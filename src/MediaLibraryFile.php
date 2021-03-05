@@ -16,7 +16,7 @@ class MediaLibraryFile extends File
     {
         parent::fill($data);
 
-        $value = $this->form->model()->getMedia($this->column());
+        $value = $this->form->model()->getMedia($this->mediaCollection);
 
         if ($value->count()) {
             $this->value = $value->first()->id;
@@ -38,7 +38,7 @@ class MediaLibraryFile extends File
     {
         $this->name = $this->getStoreName($file);
 
-        $this->form->model()->clearMediaCollection($this->column());
+        $this->form->model()->clearMediaCollection($this->mediaCollection);
 
         return $this->uploadMedia($file);
     }
@@ -52,7 +52,7 @@ class MediaLibraryFile extends File
 
     public function setOriginal($data)
     {
-        $value = $this->form->model()->getMedia($this->column);
+        $value = $this->form->model()->getMedia($this->mediaCollection);
         if ($value->count()) {
             $this->original = $value[0]->id;
         }

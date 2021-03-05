@@ -23,7 +23,7 @@ class MediaLibraryMultipleFile extends MultipleFile
     {
         parent::fill($data);
 
-        $value = $this->form->model()->getMedia($this->column());
+        $value = $this->form->model()->getMedia($this->mediaCollection);
 
         foreach ($value as $key => $media) {
             $this->value[$key] = $media->id;
@@ -46,7 +46,7 @@ class MediaLibraryMultipleFile extends MultipleFile
     
     public function setOriginal($data)
     {
-        $value = $this->form->model()->getMedia($this->column());
+        $value = $this->form->model()->getMedia($this->mediaCollection);
 
         foreach ($value as $key => $media) {
             $this->original[$key] = $media->id;
