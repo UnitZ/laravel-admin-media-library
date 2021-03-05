@@ -10,6 +10,8 @@ use URL;
 trait MediaLibraryBase
 {
     private $responsive = false;
+
+    private $mediaCollection = 'default';
     
     private $download = false;
 
@@ -18,6 +20,13 @@ trait MediaLibraryBase
         $this->responsive = true;
 
         return $this;
+    }
+
+    public function mediaCollection($collection) 
+    {
+	$this->mediaCollection = $collection;
+
+	return $this;
     }
 
     public function uploadMedia(UploadedFile $file = null)
@@ -32,7 +41,7 @@ trait MediaLibraryBase
         }
 
         $media = $media
-            ->toMediaCollection($this->column())
+            ->toMediaCollection($this->mediaCollection)
             ->toArray();
 
         $media[NestedForm::REMOVE_FLAG_NAME] = 0;

@@ -11,10 +11,12 @@ class MediaLibraryController extends Controller
     {
         $media = Media::findOrFail($id);
 
-        return response()->download(
-            $media->getPath(),
-            $media->file_name, ['Content-Type' => $media->mime_type],
-            'inline'
-        );
+	return redirect()->away($media->getFullUrl());
+	
+//      return response()->download(
+//          $media->getPath(),
+//          $media->file_name, ['Content-Type' => $media->mime_type],
+//          'inline'
+//      );
     }
 }
